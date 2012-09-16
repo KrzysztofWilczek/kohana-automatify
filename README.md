@@ -25,16 +25,12 @@ Each controller must have a view directory e.g. Users controller must have a dir
 2. data_table.php - which contains just the data, in example in a table rows
 
 3. In the controller place those few lines:
-
-
-
+<pre>
 	$orm = ORM::factory('user'); // load the table orm
 	$search = array('name'); // set on which column(s) you want to search
-	$sort = array('id' => 'ASC'); // set the default sorting 
-	//(key is the column, value is the sorting type: ASC or DESC)
-		
+	$sort = array('id' => 'ASC'); // set the def sort (key is the column, value is the sorting type)
 	//And pass the needed instance to the view
 	$this->template->content = View::factory('users/index');
 	$this->template->content->pagination = new Model_Automatify($orm, $search, $sort);
-
+</pre>
 The rest is in the code. Thats all.
