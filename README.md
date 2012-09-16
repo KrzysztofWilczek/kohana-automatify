@@ -28,7 +28,8 @@ Each controller must have a view directory e.g. Users controller must have a dir
 
 	$orm = ORM::factory('user'); // load the table orm
 	$search = array('name'); // set on which column(s) you want to search
-	$sort = array('id' => 'ASC'); // set the default sorting (key is the column, value is the sorting type: ASC or DESC)
+	$sort = array('id' => 'ASC'); // set the default sorting 
+	//(key is the column, value is the sorting type: ASC or DESC)
 
 
 The rest is in the code. Thats all.
