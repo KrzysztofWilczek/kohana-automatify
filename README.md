@@ -30,8 +30,9 @@ In the controller place those few lines:
 	$orm = ORM::factory('user'); // load the table orm
 	$search = array('name'); // set on which column(s) you want to search
 	$sort = array('id' => 'ASC'); // set the def sort (key is the column, value is the sorting type)
-	//And pass the needed instance to the view
+	
 	$this->template->content = View::factory('users/index');
+	//And pass the needed instance to the view
 	$this->template->content->pagination = new Model_Automatify($orm, $search, $sort);
 </pre>
 The rest is in the code. Thats all.
