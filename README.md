@@ -19,12 +19,16 @@ To install it, place following files in exact directories:
 
 Each controller must have a view directory e.g. Users controller must have a directory "users" in views which must contain min. two files:
 1. index.php - main index file which will render as a partial the data_table.php file.
+
 	<?php echo View::factory('users/data_table')->set('items', $pagination->all());?>
+
 2. data_table.php - which contains just the data, in example in a table rows
 
 3. In the controller place those few lines:
+
 	$orm = ORM::factory('user'); // load the table orm
 	$search = array('name'); // set on which column(s) you want to search
 	$sort = array('id' => 'ASC'); // set the default sorting (key is the column, value is the sorting type: ASC or DESC)
+
 
 The rest is in the code. Thats all.
