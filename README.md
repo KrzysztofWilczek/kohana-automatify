@@ -30,6 +30,9 @@ Each controller must have a view directory e.g. Users controller must have a dir
 	$search = array('name'); // set on which column(s) you want to search
 	$sort = array('id' => 'ASC'); // set the default sorting 
 	//(key is the column, value is the sorting type: ASC or DESC)
-
+		
+	//And pass the needed instance to the view
+	$this->template->content = View::factory('users/index');
+	$this->template->content->pagination = new Model_Automatify($orm, $search, $sort);
 
 The rest is in the code. Thats all.
