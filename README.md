@@ -18,13 +18,14 @@ To install it, place following files in exact directories:
 	* pagination.js  -> media/js (or any other directory with your js files)
 
 Each controller must have a view directory e.g. Users controller must have a directory "users" in views which must contain min. two files:
+
 1. index.php - main index file which will render as a partial the data_table.php file.
-
+<pre>
 	<?php echo View::factory('users/data_table')->set('items', $pagination->all());?>
-
+</pre>
 2. data_table.php - which contains just the data, in example in a table rows
 
-3. In the controller place those few lines:
+In the controller place those few lines:
 <pre>
 	$orm = ORM::factory('user'); // load the table orm
 	$search = array('name'); // set on which column(s) you want to search
