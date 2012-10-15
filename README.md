@@ -1,38 +1,34 @@
 kohana-automatify
 =================
 
-Kohana automatify model which allowes you to build very easy listing items pages.
+Kohana automatify module which allowes you to build very easy listing items pages.
 
 Instalation
 -----------	
 
-For now this don't work as an module for kohana, you must do it manualy.
+To install it add Automatify module to Kohana application. Copy media/js/pagination.js to your app js folder. Last step - write few lines of code and add Automatify functions.
 
-To install it, place following files in exact directories:
+Usage
+-----
 
-	* automatify.php -> classes/model/
-	* norecords.php  -> views/helpers/
-	* pagination.php -> views/helpers/
-	* perpage.php    -> views/helpers/perpage.php
-	* search.php     -> views/helpers/search.php
-	* pagination.js  -> media/js (or any other directory with your js files)
+For every controller where youn need have ajax pagination create _list.php. This list view will contains description of elements list created by pagination.
+In your index.php - main action view of elements list - use render partial methods:
 
-Each controller must have a view directory e.g. Users controller must have a directory "users" in views which must contain min. two files:
-
-1. index.php - main index file which will render as a partial the data_table.php file.
 <pre>
-	<?php echo View::factory('users/data_table')->set('items', $pagination->all());?>
+	<?= View::factory('users/_list')->set('items', $pagination->all());?>
 </pre>
-2. data_table.php - which contains just the data, in example in a table rows
 
-In the controller place those few lines:
+Remember _list.php only contains roules of data display
+
+In your controller create query and configure automatify pagination:
+
 <pre>
-	$orm = ORM::factory('user'); // load the table orm
-	$search = array('name'); // set on which column(s) you want to search
+
+        $query = $query = DB::select('*')->from('users');
+	$search = array('title'); // set on which column(s) you want to search
 	$sort = array('id' => 'ASC'); // set the def sort (key is the column, value is the sorting type)
-	
-	$this->template->content = View::factory('users/index');
-	//And pass the needed instance to the view
-	$this->template->content->pagination = new Model_Automatify($orm, $search, $sort);
+	$this->template->body = View::factory('users/index');
+	$this->template->body->pagination = new Automatify($query, $search, $sort);
 </pre>
+
 The rest is in the code. Thats all.

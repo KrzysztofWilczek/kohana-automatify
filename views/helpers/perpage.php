@@ -1,6 +1,6 @@
 <?php 
 	$perpage = Request::initial()->query('perpage');
-	$perpage = Model_Automatify::perPageFilter($perpage);
+	$perpage = Automatify::perPageFilter($perpage);
 ?>
 <div id="perpage" class="pagination pull-left">
   <ul>
